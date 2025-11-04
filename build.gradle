@@ -47,6 +47,10 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
+tasks.named("remapJar") {
+	archiveClassifier.set("")
+}
+
 java {
 	withSourcesJar()
 
@@ -65,8 +69,14 @@ jar {
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
+			groupId = project.group
 			artifactId = project.archives_base_name
-			from components.java
+			version = project.version
+
+			artifact(tasks.remapJar) {
+				builtBy tasks.remapJar
+			}
+			artifact(tasks.sourcesJar)
 		}
 	}
 
