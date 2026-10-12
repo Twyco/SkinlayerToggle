@@ -1,11 +1,11 @@
 package de.twyco.skinlayertoggle.events.keybinds;
 
 import de.twyco.skinlayertoggle.events.KeybindEvent;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.GameOptions;
-import net.minecraft.entity.player.PlayerModelPart;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.Options;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,30 +21,30 @@ public class ToggleAllEvent implements KeybindEvent {
     };
 
     @Override
-    public void execute(MinecraftClient client) {
-        MinecraftClient mc = MinecraftClient.getInstance();
+    public void execute(Minecraft client) {
+        Minecraft mc = Minecraft.getInstance();
         if (mc == null) return;
-        GameOptions opts = mc.options;
+        Options opts = mc.options;
 
         boolean allEnabled = true;
         for (PlayerModelPart p : LAYER_PARTS) {
-            if (!opts.isPlayerModelPartEnabled(p)) {
+            if (!opts.isModelPartEnabled(p)) {
                 allEnabled = false;
                 break;
             }
         }
         for (PlayerModelPart p : LAYER_PARTS) {
-            opts.setPlayerModelPart(p, !allEnabled);
+            opts.setModelPart(p, !allEnabled);
         }
-        opts.write();
+        opts.save();
 
         boolean nowOn = !allEnabled;
         if (client.player != null) {
-            Text statusText = nowOn
-                    ? Text.literal("ON").formatted(Formatting.GREEN, Formatting.BOLD)
-                    : Text.literal("OFF").formatted(Formatting.RED, Formatting.BOLD);
+            Component statusText = nowOn
+                    ? Component.literal("ON").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD)
+                    : Component.literal("OFF").withStyle(ChatFormatting.RED, ChatFormatting.BOLD);
 
-            client.player.sendMessage(Text.literal("Second layer: ").append(statusText), true);
+            client.player.displayClientMessage(Component.literal("Second layer: ").append(statusText), true);
         }
         LOG.info("[SkinlayerToggle] Second layer -> {}", nowOn ? "ON" : "OFF");
     }

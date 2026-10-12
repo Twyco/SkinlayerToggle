@@ -1,8 +1,8 @@
 package de.twyco.skinlayertoggle.listener.keybinds;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public interface KeybindHandler {
 
-    void onClientTick(MinecraftClient client);
+    void onClientTick(Minecraft client);
 }

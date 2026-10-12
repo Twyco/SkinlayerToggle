@@ -1,8 +1,8 @@
 package de.twyco.skinlayertoggle.events;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public interface KeybindEvent {
 
-    void execute(MinecraftClient client);
+    void execute(Minecraft client);
 }

@@ -2,7 +2,7 @@ package de.twyco.skinlayertoggle.keybinds;
 
 import de.twyco.skinlayertoggle.listener.keybinds.KeybindHandler;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class KeybindManager {
         if (initialized) return;
         initialized = true;
 
-        ClientTickEvents.END_CLIENT_TICK.register((MinecraftClient client) -> {
+        ClientTickEvents.END_CLIENT_TICK.register((Minecraft client) -> {
             for (KeybindHandler h : handlers) {
                 try {
                     h.onClientTick(client);
