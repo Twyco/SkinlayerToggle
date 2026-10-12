@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 public final class Keybinds {
 
@@ -18,8 +17,8 @@ public final class Keybinds {
         TOGGLE_ALL = KeyMappingHelper.registerKeyMapping(
                 new KeyMapping(
                         "key.skinlayertoggle.toggle.all",
-                        InputConstants.Type.KEYSYM,
-                        GLFW.GLFW_KEY_J,
+                        InputConstants.Type.KEYBOARD,
+                        InputConstants.KEY_J,
                         CATEGORY
                 )
         );
