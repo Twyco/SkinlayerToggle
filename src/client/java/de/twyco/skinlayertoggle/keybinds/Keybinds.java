@@ -1,7 +1,7 @@
 package de.twyco.skinlayertoggle.keybinds;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -15,7 +15,7 @@ public final class Keybinds {
 
     public static void init() {
         CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("skinlayertoggle", "main"));
-        TOGGLE_ALL = KeyBindingHelper.registerKeyBinding(
+        TOGGLE_ALL = KeyMappingHelper.registerKeyMapping(
                 new KeyMapping(
                         "key.skinlayertoggle.toggle.all",
                         InputConstants.Type.KEYSYM,

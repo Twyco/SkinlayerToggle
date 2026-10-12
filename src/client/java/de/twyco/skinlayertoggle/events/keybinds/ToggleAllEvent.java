@@ -44,7 +44,9 @@ public class ToggleAllEvent implements KeybindEvent {
                     ? Component.literal("ON").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD)
                     : Component.literal("OFF").withStyle(ChatFormatting.RED, ChatFormatting.BOLD);
 
-            client.player.displayClientMessage(Component.literal("Second layer: ").append(statusText), true);
+            client.player.sendOverlayMessage(
+                    Component.literal("Second layer: ").append(statusText)
+            );
         }
         LOG.info("[SkinlayerToggle] Second layer -> {}", nowOn ? "ON" : "OFF");
     }
