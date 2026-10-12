@@ -6,8 +6,13 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
+
 base {
-	archivesName = project.archives_base_name
+    archivesName = "fabric-${project.mod_version}+${project.minecraft_version}"
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    archiveVersion = ""
 }
 
 repositories {
